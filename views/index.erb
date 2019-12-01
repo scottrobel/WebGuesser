@@ -1,12 +1,75 @@
 <html>
-  <head></head>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
   <body>
-    <p>
-      <%= messege %>
-    </p>
-    <form>
-      <input type='text' name='guess' />
-      <input type='submit' value='Guess!' />
-    </form>
+    <div class = "center-container">
+      <div>
+        <form method='post'>
+          <div class = "container-fluid">
+          <% guess_messege_pairs.each do |guess, messege| %>
+            <div class="row">
+              <div class="col-sm-6 guess"><%=guess%></div>
+              <div class="col-sm-6 messege"><%=messege%></div>
+            </div>
+          <% end %>
+          </div>
+          <ul>
+            <% if cheat_mode %>
+              <li>
+                The Secret Number is <%= secret_number %>
+              </li>
+            <% end %>
+            <li id = "guess">
+                Guesses left = <%= guesses_left %>
+            </li>
+            <li id = "output">
+                <%= messege %>
+            </li>
+          </ul>
+          <div class="form-group">
+            <label for = "guess" >Guess</label>
+            <input class="form-control" id = "guess" type='number' min='0' max='100' name='guess' />
+          </div>
+          <input class="btn btn-primary" type='submit' value='Guess!' />
+        </form>
+      </div>
+    </div>
   </body>
+  <style>
+    .center-container{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .center-container > *{
+      display: block;
+      width: 30%;
+    }
+    ul{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    #guess{
+      color: green;
+    }
+    #output{
+      color: blue;
+    }
+    .row{
+    background-color: #DEFCF9;
+    border: 2px solid #C3BEF0;
+    }
+    .messege{
+      background-color: #cadefc;
+      border-left: 2px solid #C3BEF0;
+    }
+  </style>
 </html>
